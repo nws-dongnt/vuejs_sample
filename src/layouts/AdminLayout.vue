@@ -32,6 +32,6 @@ import SideBar from "../components/SideBar.vue";
   },
 })
 export default class Home extends Vue {
-  public isCollapse = true;
+  public isCollapse = false;
 }
 </script>
