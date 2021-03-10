@@ -1,10 +1,59 @@
 {
+    "common": {
+        "lang": "English",
+        "english": "English",
+        "vietnamese": "Vietnamese",
+        "introduct_of_1": "Introduction of ",
+        "introduct_of_2": "Hover to show detail"
+    },
+    "dashboard": {
+        "title": "THIS IS DASHBOARD"
+    },
     "sidebar": {
         "dashboard": "Dashboard",
         "all_profile": "All profile",
-        "profile_detail": "Profile detail",
+        "profile_detail": "Create profile",
         "minimize": "Minimize"
     },
-    "introduct_of_1": "Introduction of ",
-    "introduct_of_2": "Hover to show detail"
+    "all_profile": {
+        "index" : "ID",
+        "avatar": "Avatar",
+        "fullname": "Fullname",
+        "gender_age": "Gender/Age",
+        "ever_married": "Ever Married",
+        "yes": "YES",
+        "no": "NO",
+        "introduce": "Introduce",
+        "hobbies": "Hobbies",
+        "social_account": "Social Account",
+        "detail": "Detail"
+    },
+    "profile_detail": {
+        "first_name": "First name",
+        "last_name": "Last name",
+        "gender": "Gender",
+        "male": "Male",
+        "female": "Female",
+        "other": "Other",
+        "age": "Age",
+        "date_of_birth": "Date of Birth",
+        "hobbies": "Hobbies",
+        "ever_married": "Ever Married",
+        "yes": "Yes",
+        "no": "No",
+        "social_account": "Social Account",
+        "introduction": "Introduction",
+        "delete": "Delete",
+        "confirm_yes": "OK",
+        "confirm_no": "No, Thanks",
+        "confirm_message": "Are you sure to delete this profile?",
+        "delete_success": "Delete successfully!",
+        "delete_fail": "Delete Failed!",
+        "save" : "Save",
+        "save_success": "Save successfully!",
+        "save_fail": "Save Failed!",
+        "update_success": "Update successfully!",
+        "update_fail": "Update Failed!"
+    }
+
 }

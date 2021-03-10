@@ -40,6 +40,12 @@
   </el-menu>
 </template>
 
+<style scoped>
+li.el-menu-item {
+  text-align: left;
+}
+</style>
+
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
 

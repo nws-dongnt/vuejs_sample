@@ -1,11 +1,10 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import Dashboard from '../views/Dashboard.vue';
-import ProfileDetail from '../views/ProfileDetail.vue';
-
-//IMPORT HERE
-
 Vue.use(VueRouter);
+
+const Dashboard = () => import('../views/Dashboard.vue');
+const AllProfile = () => import('../views/AllProfile.vue');
+const ProfileDetail = () => import('../views/ProfileDetail.vue');
 
 const routes: Array<RouteConfig> = [
   {
@@ -20,10 +19,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/all-profile',
     name: 'all_profile',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AllProfile.vue')
+    component: AllProfile
   },
   {
     path: '/profile-detail/create',
@@ -35,12 +31,12 @@ const routes: Array<RouteConfig> = [
     name: 'profile_detail_update',
     component: ProfileDetail
   },
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+export default router;

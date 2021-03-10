@@ -2,7 +2,7 @@
   <div class="home">
     <AddminLayout>
        <img alt="Vue logo" src="../assets/logo.png" />
-        <h1>THIS IS DASHBOARD</h1>
+        <h1>{{$t("dashboard.title")}}</h1>
     </AddminLayout>
   </div>
 </template>

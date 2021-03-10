@@ -1,3 +1,53 @@
 {
-    "home": "Đây là trang chủ"
+    "common": {
+        "lang": "Tiếng Việt",
+        "english": "Tiếng Anh",
+        "vietnamese": "Tiếng Việt",
+        "introduct_of_1": "Giới thiệu về ",
+        "introduct_of_2": "Chỉ vào để xem chi tiết"
+    },
+    "dashboard": {
+        "title": "ĐAY LÀ BẢNG ĐIỀU KHIỂN"
+    },
+    "sidebar": {
+        "dashboard": "Bảng điều khiển",
+        "all_profile": "Tất cả hồ sơ",
+        "profile_detail": "Tạo mới hồ sơ",
+        "minimize": "Thu nhỏ"
+    },
+    "all_profile": {
+        "index" : "STT",
+        "avatar": "Avatar",
+        "fullname": "Họ và tên",
+        "gender_age": "Giới tính/Tuổi",
+        "ever_married": "Đã từ kết hôn",
+        "yes": "ĐÃ TỪNG",
+        "no": "CHƯA TỪNG",
+        "introduce": "Giới thiệu",
+        "hobbies": "Sở thích",
+        "social_account": "Tài khoản MXH",
+        "detail": "Chi tiết"
+    },
+    "profile_detail": {
+        "first_name": "Họ",
+        "last_name": "Tên",
+        "gender": "Giới tính",
+        "male": "Nam",
+        "female": "Nữ",
+        "other": "Khác",
+        "age": "Tuổi",
+        "date_of_birth": "Sinh nhật",
+        "hobbies": "Sở thích",
+        "ever_married": "Từng kết hôn",
+        "yes": "Đã từng",
+        "no": "Chưa từng",
+        "social_account": "Tài khoản MXH",
+        "introduction": "Tự giới thiệu",
+        "delete": "Xóa",
+        "confirm_yes": "Có",
+        "confirm_no": "Thôi, cám ơn",
+        "confirm_message": "Bạn có chắc là muốn xóa hồ sơ này không?",
+        "save" : "Lưu"
+    }
+
 }
