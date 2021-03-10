@@ -1,20 +1,18 @@
 <template>
   <div>
     <el-container>
-      <el-header style="border-bottom: 1px solid #eee">
-        <div id="nav">
-          <i class="el-icon-d-arrow-left" style="float: left;" />
-          <router-link to="/dashboard">Home</router-link> |
-          <router-link to="/about">About</router-link>
-        </div>
-      </el-header>
-      <el-container style="height: 860px;">
-        <el-aside style="height: 860px;">
-          <SideBar :collapse="isCollapse"/>
-        </el-aside>
-        <el-main>
-          <slot />
-        </el-main>
+      <el-aside style="height: 860px;">
+        <SideBar/>
+      </el-aside>
+      <el-container>
+        <el-header style="border-bottom: 1px solid #eee">
+          <div id="nav">
+            <router-link to="/dashboard">Home</router-link> |
+            <router-link to="/about">About</router-link>
+          </div>
+        </el-header>
+        <el-main><slot /></el-main>
+        <el-footer>Footer</el-footer>
       </el-container>
     </el-container>
   </div>
@@ -32,6 +30,6 @@ import SideBar from "../components/SideBar.vue";
   },
 })
 export default class Home extends Vue {
-  public isCollapse = false;
+  
 }
 </script>

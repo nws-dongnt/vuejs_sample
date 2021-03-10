@@ -1,6 +1,10 @@
 {
     "sidebar": {
         "dashboard": "Dashboard",
-        "all_profile": "All profile"
-    }
+        "all_profile": "All profile",
+        "profile_detail": "Profile detail",
+        "minimize": "Minimize"
+    },
+    "introduct_of_1": "Introduction of ",
+    "introduct_of_2": "Hover to show detail"
 }

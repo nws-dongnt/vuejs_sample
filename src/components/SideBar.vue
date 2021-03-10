@@ -2,17 +2,24 @@
   <el-menu
     style="border-right: none !important; height: 860px; border-right: 1px solid #eee;"
     default-active="1"
-    :collapse=collapse
+    router
   >
-    <el-menu-item index="1">
+    <!-- <el-menu-item>
+      <i class="el-icon-d-arrow-left" @click="collapseHandle()"></i>
+      <span>{{ $t("sidebar.minimize") }}</span>
+    </el-menu-item> -->
+    <el-menu-item index="1" route="/dashboard">
       <i class="el-icon-menu"></i>
       <span>{{ $t("sidebar.dashboard") }}</span>
     </el-menu-item>
-    <el-menu-item index="2">
+    <el-menu-item index="2" route="/all-profile">
       <i class="el-icon-user-solid"></i>
       <span>{{ $t("sidebar.all_profile") }}</span>
     </el-menu-item>
-
+    <el-menu-item index="3" route="/profile-detail">
+      <i class="el-icon-s-claim"></i>
+      <span>{{ $t("sidebar.profile_detail") }}</span>
+    </el-menu-item>
     <!-- <el-submenu index="1">
       <template slot="title">
         <i class="el-icon-location"></i>
@@ -34,9 +41,17 @@
 </template>
 
 <script lang="ts">
-import { Prop, Vue } from "vue-property-decorator";
+import { Vue } from "vue-property-decorator";
 
 export default class SideBar extends Vue {
-  @Prop({ default: false }) collapse!: boolean;
+  //   public isCollapse = false;
+  //   public collapseHandle() {
+  //     this.isCollapse = !this.isCollapse;
+  //   }
+  //   data() {
+  //       return {
+  //         isCollapse: this.isCollapse
+  //       };
+  //     }
 }
 </script>
