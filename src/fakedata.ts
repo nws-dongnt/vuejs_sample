@@ -1,7 +1,6 @@
 import { Person } from "./models/person/Person";
 import { Gender } from "@/models/person/Person";
 import { Hobbies } from '@/models/hobbies/Hobbies';
-import { SocialAccount } from '@/models/socialAccount/SocialAccount';
 
 export const allHobbies: Hobbies[] = [
     new Hobbies({

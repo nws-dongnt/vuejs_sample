@@ -16,7 +16,7 @@
       <i class="el-icon-user-solid"></i>
       <span>{{ $t("sidebar.all_profile") }}</span>
     </el-menu-item>
-    <el-menu-item index="3" route="/profile-detail">
+    <el-menu-item index="3" route="/profile-detail/create">
       <i class="el-icon-s-claim"></i>
       <span>{{ $t("sidebar.profile_detail") }}</span>
     </el-menu-item>

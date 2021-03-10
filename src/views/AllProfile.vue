@@ -64,15 +64,15 @@ import {allProfile} from "../fakedata";
 import { Gender } from "../models/person/Person";
 
 class PersonInfoModel {
-  index: number;
-  avatar: any;
-  fullName: string;
-  gender: string;
-  age: number;
-  everMarried: string;
-  introduce: string;
-  hobbies: string;
-  socialAccount: string;
+  index!: number;
+  avatar!: string;
+  fullName!: string;
+  gender!: string;
+  age!: number;
+  everMarried!: string;
+  introduce!: string;
+  hobbies!: string;
+  socialAccount!: string;
   constructor(init?: Partial<PersonInfoModel>) {
     Object.assign(this, init);
   }
@@ -89,16 +89,16 @@ export default class AllProfile extends Vue {
       index: index + 1,
       avatar: item.avatar,
       fullName: item.lastName + " " + item.firstName,
-      gender: this.getGenderClassName(item.gender),
+      gender: item.gender ? this.getGenderClassName(item.gender) : this.getGenderClassName(Gender.MALE),
       age: item.age,
       everMarried: item.everMarried ? "YES" : "NO",
       introduce: item.introduce,
-      hobbies: item.hobbies.map(hob => hob.name).join(", "),
+      hobbies: item.hobbies ? item.hobbies.map(hob => hob.name).join(", ") : "",
       socialAccount: item.socialAccount
     })
   });
 
-  private getGenderClassName(gender: number): string {
+  private getGenderClassName(gender: Gender): string {
     switch(gender) {
       case Gender.MALE: return "el-icon-male";
       case Gender.FEMALE: return "el-icon-female";

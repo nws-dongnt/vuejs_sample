@@ -5,7 +5,7 @@
       <div class="_flex ">
         <div>
           <el-container>
-            <el-aside class="_flex _align-center _justify-center">
+            <el-aside class="_flex _justify-center">
               <div
                 class="grid-content bg-purple"
                 style="height: 200px; width: 200px"
@@ -186,7 +186,7 @@ import { allHobbies, allProfile } from "../fakedata";
     AddminLayout,
   },
 })
-export default class Dashboard extends Vue {
+export default class ProfileDetail extends Vue {
   private genderOptions = [
     {
       value: Gender.MALE,
@@ -216,6 +216,10 @@ export default class Dashboard extends Vue {
   private selectedHobbies = [];
   private socialAccount = "";
   private introduct = "";
+
+  private created() {
+   
+  }
 
   private submitHandle() {
     const newPerson = new Person({
