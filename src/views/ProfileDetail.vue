@@ -3,7 +3,12 @@
   <div class="home">
     <AddminLayout>
       <div class="_flex ">
-        <el-form ref="form" :model="person" label-width="120px">
+        <el-form
+          ref="profileDetail"
+          :rules="rules"
+          :model="person"
+          label-width="120px"
+        >
           <el-container>
             <el-aside class="_flex _justify-center">
               <div class="avatar-wrapper">
@@ -28,7 +33,10 @@
             <el-main style="width: 65vw;">
               <el-row :gutter="3" class="row-bg" type="flex">
                 <el-col :xl="6">
-                  <el-form-item :label="$t('profile_detail.first_name')">
+                  <el-form-item
+                    :label="$t('profile_detail.first_name')"
+                    prop="firstName"
+                  >
                     <el-input
                       placeholder="input your first name"
                       v-model="person.firstName"
@@ -37,7 +45,10 @@
                   </el-form-item>
                 </el-col>
                 <el-col :xl="6">
-                  <el-form-item :label="$t('profile_detail.last_name')">
+                  <el-form-item
+                    :label="$t('profile_detail.last_name')"
+                    prop="lastName"
+                  >
                     <el-input
                       placeholder="input your last name"
                       v-model="person.lastName"
@@ -49,7 +60,10 @@
 
               <el-row :gutter="3" class="row-bg" type="flex">
                 <el-col :xl="2">
-                  <el-form-item :label="$t('profile_detail.gender')">
+                  <el-form-item
+                    :label="$t('profile_detail.gender')"
+                    prop="selectedGender"
+                  >
                     <el-select
                       style="width: 80px;"
                       v-model="person.selectedGender"
@@ -68,7 +82,7 @@
                 </el-col>
 
                 <el-col :xl="3" class="custom-age-col">
-                  <el-form-item :label="$t('profile_detail.age')">
+                  <el-form-item :label="$t('profile_detail.age')" prop="age">
                     <el-input-number
                       style="width: 49px;"
                       v-model="person.age"
@@ -80,7 +94,10 @@
                 </el-col>
 
                 <el-col :xl="4">
-                  <el-form-item :label="$t('profile_detail.date_of_birth')">
+                  <el-form-item
+                    :label="$t('profile_detail.date_of_birth')"
+                    prop="dateOfBirth"
+                  >
                     <el-date-picker
                       v-model="person.dateOfBirth"
                       style="width: 180px;"
@@ -95,7 +112,10 @@
 
               <el-row :gutter="4" class="row-bg" type="flex">
                 <el-col :xl="6">
-                  <el-form-item :label="$t('profile_detail.hobbies')">
+                  <el-form-item
+                    :label="$t('profile_detail.hobbies')"
+                    prop="selectedHobbies"
+                  >
                     <el-select
                       v-model="person.selectedHobbies"
                       multiple
@@ -115,7 +135,10 @@
                 </el-col>
 
                 <el-col :xl="6" class="ever-married-custom">
-                  <el-form-item :label="$t('profile_detail.ever_married')">
+                  <el-form-item
+                    :label="$t('profile_detail.ever_married')"
+                    prop="everMarried"
+                  >
                     <el-radio
                       style="width: 50px"
                       v-model="person.everMarried"
@@ -134,7 +157,10 @@
 
               <el-row :gutter="3" class="row-bg" type="flex">
                 <el-col :xl="12">
-                  <el-form-item :label="$t('profile_detail.social_account')">
+                  <el-form-item
+                    :label="$t('profile_detail.social_account')"
+                    prop="socialAccount"
+                  >
                     <el-input
                       placeholder="input your social account link"
                       v-model="person.socialAccount"
@@ -146,7 +172,10 @@
 
               <el-row :gutter="3" class="row-bg" type="flex">
                 <el-col :xl="12">
-                  <el-form-item :label="$t('profile_detail.introduction')">
+                  <el-form-item
+                    :label="$t('profile_detail.introduction')"
+                    prop="introduct"
+                  >
                     <el-input
                       type="textarea"
                       :rows="5"
@@ -229,7 +258,7 @@ class PersonModel {
   firstName!: string;
   lastName!: string;
   selectedGender!: number;
-  age!: number;
+  age!: number | undefined;
   dateOfBirth!: string;
   everMarried!: boolean;
   selectedHobbies!: string[];
@@ -246,6 +275,10 @@ class PersonModel {
   },
 })
 export default class ProfileDetail extends Vue {
+  $message: any;
+  $router: any;
+  $route: any;
+
   private genderOptions = [
     {
       value: Gender.MALE,
@@ -266,6 +299,72 @@ export default class ProfileDetail extends Vue {
     label: hob.name,
   }));
 
+  private rules = {
+    firstName: [
+      {
+        required: true,
+        message: "Please input first name",
+        trigger: "blur",
+      },
+    ],
+    lastName: [
+      {
+        required: true,
+        message: "Please input last name",
+        trigger: "blur",
+      },
+    ],
+    selectedGender: [
+      {
+        required: true,
+        message: "Please select gender",
+        trigger: "blur",
+      },
+    ],
+    age: [
+      {
+        required: true,
+        message: "require!",
+        trigger: "blur",
+      },
+    ],
+    dateOfBirth: [
+      {
+        required: true,
+        message: "Please select your birthday",
+        trigger: "blur",
+      },
+    ],
+    // selectedHobbies: [
+    //   {
+    //     required: true,
+    //     message: "Please select your hobbies",
+    //     trigger: "blur",
+    //   },
+    // ],
+    everMarried: [
+      {
+        required: true,
+        message: "Please sellect",
+        trigger: "blur",
+      },
+    ],
+    // socialAccount: [
+    //   {
+    //     required: true,
+    //     message: "Please input your social account",
+    //     trigger: "blur",
+    //   },
+    // ],
+    // introduct: [
+    //   {
+    //     required: true,
+    //     message: "Please input your introduction",
+    //     trigger: "blur",
+    //   },
+    // ],
+  };
+
   private person = new PersonModel({
     id: "",
     avatar:
@@ -273,7 +372,7 @@ export default class ProfileDetail extends Vue {
     firstName: "",
     lastName: "",
     selectedGender: 0,
-    age: 0,
+    age: undefined,
     dateOfBirth: "",
     everMarried: true,
     selectedHobbies: [],
@@ -291,7 +390,7 @@ export default class ProfileDetail extends Vue {
         this.person.firstName = p.firstName ? p.firstName : "";
         this.person.lastName = p.lastName ? p.lastName : "";
         this.person.selectedGender = p.gender ? p.gender : 0;
-        this.person.age = p.age ? p.age : 0;
+        this.person.age = p.age ? p.age : undefined;
         this.person.dateOfBirth = p.dateOfBirth ? p.dateOfBirth : "";
         this.person.everMarried = p.everMarried ? p.everMarried : false;
         this.person.selectedHobbies = p.hobbies
@@ -312,46 +411,60 @@ export default class ProfileDetail extends Vue {
     const isLt2M = file.size / 1024 / 1024 < 2;
 
     if (!isIamge) {
-      return this.$message.error("Not support this format!");
+      return this.$message({
+        message: "Not support this format!",
+        type: "error",
+        offset: 10,
+      });
     }
     if (!isLt2M) {
-      return this.$message.error("Avatar picture size can not exceed 2MB!");
+      return this.$message({
+        message: "Avatar picture size can not exceed 2MB!",
+        type: "error",
+        offset: 10,
+      });
     }
     this.person.avatar = URL.createObjectURL(file.raw);
   }
 
   public submitHandle() {
-    const checkPerson = allProfile.find((p) => p.id === this.person.id);
-    if (checkPerson) {
-      checkPerson.avatar = this.person.avatar;
-      checkPerson.firstName = this.person.firstName;
-      checkPerson.lastName = this.person.lastName;
-      checkPerson.gender = this.person.selectedGender;
-      checkPerson.age = this.person.age;
-      checkPerson.dateOfBirth = this.person.dateOfBirth;
-      checkPerson.everMarried = this.person.everMarried;
-      checkPerson.hobbies = this.getListHobbies();
-      checkPerson.socialAccount = this.person.socialAccount;
-      checkPerson.introduce = this.person.introduct;
-      this.$message(String(this.$t("profile_detail.update_success")));
-      return this.$router.push("/all-profile");
-    }
-    const newPerson = new Person({
-      id: String("ID" + Math.round(Math.random() * 9999)),
-      avatar: this.person.avatar,
-      firstName: this.person.firstName,
-      lastName: this.person.lastName,
-      gender: this.person.selectedGender,
-      age: this.person.age,
-      dateOfBirth: this.person.dateOfBirth,
-      everMarried: this.person.everMarried,
-      hobbies: this.getListHobbies(),
-      socialAccount: this.person.socialAccount,
-      introduce: this.person.introduct,
+    (this.$refs["profileDetail"] as any).validate((valid: boolean) => {
+      if (valid) {
+        const checkPerson = allProfile.find((p) => p.id === this.person.id);
+        if (checkPerson) {
+          checkPerson.avatar = this.person.avatar;
+          checkPerson.firstName = this.person.firstName;
+          checkPerson.lastName = this.person.lastName;
+          checkPerson.gender = this.person.selectedGender;
+          checkPerson.age = this.person.age ? this.person.age : 0;
+          checkPerson.dateOfBirth = this.person.dateOfBirth;
+          checkPerson.everMarried = this.person.everMarried;
+          checkPerson.hobbies = this.getListHobbies();
+          checkPerson.socialAccount = this.person.socialAccount;
+          checkPerson.introduce = this.person.introduct;
+          this.$message(String(this.$t("profile_detail.update_success")));
+          return this.$router.push("/all-profile");
+        }
+        const newPerson = new Person({
+          id: String("ID" + Math.round(Math.random() * 9999)),
+          avatar: this.person.avatar,
+          firstName: this.person.firstName,
+          lastName: this.person.lastName,
+          gender: this.person.selectedGender,
+          age: this.person.age,
+          dateOfBirth: this.person.dateOfBirth,
+          everMarried: this.person.everMarried,
+          hobbies: this.getListHobbies(),
+          socialAccount: this.person.socialAccount,
+          introduce: this.person.introduct,
+        });
+        allProfile.push(newPerson);
+        this.$message.success(String(this.$t("profile_detail.save_success")));
+        this.$router.push("/all-profile");
+      } else {
+        this.$message.error(String(this.$t("profile_detail.save_fail")));
+      }
     });
-    allProfile.push(newPerson);
-    this.$message.success(String(this.$t("profile_detail.save_success")));
-    this.$router.push("/all-profile");
   }
 
   public deletePerson() {
@@ -383,7 +496,7 @@ export default class ProfileDetail extends Vue {
     this.person.firstName = "";
     this.person.lastName = "";
     this.person.selectedGender = 0;
-    this.person.age = 1;
+    this.person.age = undefined;
     this.person.dateOfBirth = "";
     this.person.everMarried = false;
     this.person.selectedHobbies = [];

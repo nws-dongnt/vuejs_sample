@@ -2,6 +2,9 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 
+//store
+import store from './store';
+
 //i18n
 import VueI18n from 'vue-i18n';
 import i18n from './langs/i18n';
@@ -17,6 +20,7 @@ Vue.config.productionTip = false;
 const mainApp = new Vue({
   router,
   i18n,
+  store,
   render: h => h(App)
 }).$mount('#app');
 export default mainApp;
