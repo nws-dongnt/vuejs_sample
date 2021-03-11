@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-container>
-      <el-aside style="height: 860px;">
+      <el-aside style="height: 920px;">
         <SideBar />
       </el-aside>
       <el-container>
@@ -19,7 +19,7 @@
           </div>
         </el-header>
         <el-main><slot /></el-main>
-        <el-footer>Footer</el-footer>
+        <el-footer>© Copyrignt nws-dongnt (DONG DEN) dap troai :))</el-footer>
       </el-container>
     </el-container>
   </div>
@@ -35,7 +35,6 @@ import { Component, Vue } from "vue-property-decorator";
 import NavBar from "../components/NavBar.vue";
 import SideBar from "../components/SideBar.vue";
 
-import i18n from "../langs/i18n"
 @Component({
   components: {
     SideBar,

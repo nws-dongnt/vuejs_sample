@@ -276,28 +276,18 @@ class PersonModel {
 })
 export default class ProfileDetail extends Vue {
   $message: any;
+  $store: any;
   $router: any;
   $route: any;
+  $t: any;
 
-  private genderOptions = [
-    {
-      value: Gender.MALE,
-      label: "Male",
-    },
-    {
-      value: Gender.FEMALE,
-      label: "Female",
-    },
-    {
-      value: Gender.OTHER,
-      label: "Other",
-    },
-  ];
+  private isUpdate = () => {
+    return this.$route.name;
+  };
 
-  private hobbiesOptions = allHobbies.map((hob) => ({
-    value: hob.id,
-    label: hob.name,
-  }));
+  private genderOptions: any[] = [];
+
+  private hobbiesOptions: any[] = [];
 
   private rules = {
     firstName: [
@@ -381,6 +371,34 @@ export default class ProfileDetail extends Vue {
   });
 
   public created() {
+    //start screen
+    this.genderOptions = [
+      {
+        value: Gender.MALE,
+        label: String(this.$t("profile_detail.male")),
+      },
+      {
+        value: Gender.FEMALE,
+        label: String(this.$t("profile_detail.female")),
+      },
+      {
+        value: Gender.OTHER,
+        label: String(this.$t("profile_detail.other")),
+      },
+    ];
+
+    this.hobbiesOptions = allHobbies.map((hob) => ({
+      value: hob.id,
+      label: hob.name,
+    }));
+
+    //watch
+    this.$watch("isUpdate", () => console.log(this.isUpdate()), {
+      deep: true,
+      immediate: true,
+    });
+
+    //binding person
     const id = this.$route.params.id;
     if (id) {
       const p = allProfile.find((item) => item.id === String(id));

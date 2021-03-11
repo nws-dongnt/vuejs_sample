@@ -7,7 +7,7 @@
         "introduct_of_2": "Chỉ vào để xem chi tiết"
     },
     "dashboard": {
-        "title": "ĐAY LÀ BẢNG ĐIỀU KHIỂN"
+        "title": "ĐAY LÀ BẢNG ĐIỀU KHIỂN     "
     },
     "sidebar": {
         "dashboard": "Bảng điều khiển",
@@ -26,10 +26,11 @@
         "introduce": "Giới thiệu",
         "hobbies": "Sở thích",
         "social_account": "Tài khoản MXH",
-        "detail": "Chi tiết"
+        "detail": "Chi tiết",
+        "create_profile": "Tạo hồ sơ mới"
     },
     "profile_detail": {
-        "first_name": "Họ",
+        "first_name": "Họ và tên đệm",
         "last_name": "Tên",
         "gender": "Giới tính",
         "male": "Nam",

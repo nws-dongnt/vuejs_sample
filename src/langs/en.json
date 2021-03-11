@@ -7,7 +7,7 @@
         "introduct_of_2": "Hover to show detail"
     },
     "dashboard": {
-        "title": "THIS IS DASHBOARD"
+        "title": "THIS IS DASHBOARD     "
     },
     "sidebar": {
         "dashboard": "Dashboard",
@@ -26,7 +26,8 @@
         "introduce": "Introduce",
         "hobbies": "Hobbies",
         "social_account": "Social Account",
-        "detail": "Detail"
+        "detail": "Detail",
+        "create_profile": "Create new profile"
     },
     "profile_detail": {
         "first_name": "First name",
