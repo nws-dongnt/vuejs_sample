@@ -2,7 +2,13 @@
   <!-- reponsive   :xs<768px   :sm≥768px    :md≥992px   :lg≥1200px   :xl≥1920px   -->
   <div class="home">
     <AddminLayout>
-      <div class="_flex ">
+      <div
+        class="_flex"
+        style="height: 20px; font-size: 20px; font-weight: bold"
+      >
+        {{ fullName }}
+      </div>
+      <div class="_flex">
         <el-form
           ref="profileDetail"
           :rules="rules"
@@ -30,7 +36,7 @@
                 </el-upload>
               </div>
             </el-aside>
-            <el-main style="width: 65vw;">
+            <el-main style="width: 65vw">
               <el-row :gutter="3" class="row-bg" type="flex">
                 <el-col :xl="6">
                   <el-form-item
@@ -65,7 +71,7 @@
                     prop="selectedGender"
                   >
                     <el-select
-                      style="width: 80px;"
+                      style="width: 80px"
                       v-model="person.selectedGender"
                       clearable
                       placeholder="Select"
@@ -84,7 +90,7 @@
                 <el-col :xl="3" class="custom-age-col">
                   <el-form-item :label="$t('profile_detail.age')" prop="age">
                     <el-input-number
-                      style="width: 49px;"
+                      style="width: 49px"
                       v-model="person.age"
                       :controls="false"
                       :min="1"
@@ -100,7 +106,7 @@
                   >
                     <el-date-picker
                       v-model="person.dateOfBirth"
-                      style="width: 180px;"
+                      style="width: 180px"
                       type="date"
                       format="d/M/yyyy"
                       placeholder="Pick a day"
@@ -186,6 +192,7 @@
                     >
                     </el-input>
                   </el-form-item>
+                  <span style="color: red" v-if="!isWriteIntro()">Let write an interesting introduction!</span>
                 </el-col>
               </el-row>
               <el-row :gutter="3" class="row-bg" type="flex">
@@ -281,10 +288,6 @@ export default class ProfileDetail extends Vue {
   $route: any;
   $t: any;
 
-  private isUpdate = () => {
-    return this.$route.name;
-  };
-
   private genderOptions: any[] = [];
 
   private hobbiesOptions: any[] = [];
@@ -355,6 +358,8 @@ export default class ProfileDetail extends Vue {
     // ],
   };
 
+  private fullName = "";
+  
   private person = new PersonModel({
     id: "",
     avatar:
@@ -369,6 +374,14 @@ export default class ProfileDetail extends Vue {
     socialAccount: "",
     introduct: "",
   });
+
+  //computed
+  private isWriteIntro = () => {
+    if (this.person.introduct) {
+      return true;
+    }
+    return false;
+  };
 
   public created() {
     //start screen
@@ -391,12 +404,6 @@ export default class ProfileDetail extends Vue {
       value: hob.id,
       label: hob.name,
     }));
-
-    //watch
-    this.$watch("isUpdate", () => console.log(this.isUpdate()), {
-      deep: true,
-      immediate: true,
-    });
 
     //binding person
     const id = this.$route.params.id;
@@ -422,6 +429,16 @@ export default class ProfileDetail extends Vue {
     } else {
       this.createNew();
     }
+
+    //watch
+    this.$watch(
+      "person.firstName",
+      (newVal: string) => (this.fullName = newVal + " " + this.person.lastName)
+    );
+    this.$watch(
+      "person.lastName",
+      (newVal: string) => (this.fullName = this.person.firstName + " " + newVal)
+    );
   }
 
   public toggleUpload(file: any) {
