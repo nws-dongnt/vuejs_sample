@@ -192,7 +192,9 @@
                     >
                     </el-input>
                   </el-form-item>
-                  <span style="color: red" v-if="!isWriteIntro()">Let write an interesting introduction!</span>
+                  <span style="color: red" v-if="!isWriteIntro()"
+                    >Let write an interesting introduction!</span
+                  >
                 </el-col>
               </el-row>
               <el-row :gutter="3" class="row-bg" type="flex">
@@ -359,7 +361,7 @@ export default class ProfileDetail extends Vue {
   };
 
   private fullName = "";
-  
+
   private person = new PersonModel({
     id: "",
     avatar:
@@ -429,6 +431,8 @@ export default class ProfileDetail extends Vue {
     } else {
       this.createNew();
     }
+
+    this.fullName = this.person.firstName + " " + this.person.lastName;
 
     //watch
     this.$watch(
