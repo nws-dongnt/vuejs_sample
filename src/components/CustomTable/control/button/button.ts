@@ -30,7 +30,7 @@ export default class TemplateButton {
 
     label!: string;
 
-    click!: (id: any) => void;
+    click?: (id: any) => void;
 
     constructor(init?: Partial<TemplateButton>) {
         Object.assign(this, init);

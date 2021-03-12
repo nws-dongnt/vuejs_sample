@@ -25,6 +25,7 @@
     :popperAppendToBody="props.popperAppendToBody"
     :focus="props.focus"
     :blur="props.blur"
+    :collapse-tags="props.collapseTags"
   >
     <el-option
       v-for="(item, index) in props.options"

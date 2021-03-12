@@ -1,5 +1,5 @@
 import { ElUploadInternalFileDetail, ElUploadProgressEvent, ElUploadInternalRawFile, FileListItem, ListType, HttpRequestOptions } from "../common";
-
+import TemplateButton from "../../control/button/button";
 export default class TemplateUpload {
     /** Request URL (required) */
     action!: string;
@@ -81,6 +81,8 @@ export default class TemplateUpload {
 
     /** Upload the file list manually */
     submit?: () => void;
+
+    buttonProps!: TemplateButton;
 
     constructor(init?: Partial<TemplateUpload>) {
         Object.assign(this, init);

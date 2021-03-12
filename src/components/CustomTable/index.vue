@@ -21,7 +21,8 @@
           <Button
             v-if="col.template.button"
             :props="col.template.button"
-            @click="col.template.button.click(scope.row.id)"
+            :id="scope.row.id"
+            @click="col.template.button.click"
           />
           <Checkbox
             v-if="col.template.checkbox"
@@ -44,7 +45,7 @@
             :props="col.template.inputNumber"
             :value="scope.row[col.prop]"
           />
-           <Radio
+          <Radio
             v-if="col.template.radio"
             :value="scope.row[col.prop]"
             :propsRadios="col.template.radio.radios"
@@ -54,7 +55,8 @@
             v-if="col.template.select"
             :value="scope.row[col.prop]"
             :props="col.template.select"
-           />
+          />
+          <Upload v-if="col.template.upload" :props="col.template.upload" />
         </div>
         <span v-else> {{ scope.row[col.prop] }}</span>
       </template>
@@ -187,7 +189,7 @@ export class ColumnTemplate {
   inputNumber?: TemplateInputNumber;
   radio?: TemplateRadio;
   select?: TemplateSelect;
-  update?: TemplateUpload;
+  upload?: TemplateUpload;
   constructor(init?: Partial<ColumnTemplate>) {
     Object.assign(this, init);
   }

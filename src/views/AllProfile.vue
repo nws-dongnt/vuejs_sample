@@ -5,8 +5,9 @@
         style="float: left; margin-bottom: 15px"
         @click="toCreatePage"
         type="primary"
-        >{{ $t("all_profile.create_profile") }}</el-button
       >
+        {{ $t("all_profile.create_profile") }}
+      </el-button>
       <CustomTable :datasource="tableData" :columns="columns" />
     </AdminLayout>
   </div>
@@ -51,6 +52,8 @@ import TemplateRadio, {
   TemplateRadioChild,
   TemplateRadioGroup,
 } from "../components/CustomTable/control/radio/radio";
+
+import TemplateUpload from "../components/CustomTable/control/upload/upload";
 
 export class PersonInfoModel {
   id = "";
@@ -130,7 +133,7 @@ export default class AllProfile extends Vue {
       }),
     });
 
-     const hobbiesOptions = allHobbies.map((hob) => ({
+    const hobbiesOptions = allHobbies.map((hob) => ({
       value: hob.id,
       label: hob.name,
     }));
@@ -144,7 +147,7 @@ export default class AllProfile extends Vue {
           options: hobbiesOptions,
           multiple: true,
           filterable: true,
-          // collapse-tags: true //TODO dongnt
+          collapseTags: true,
         }),
       }),
     });
@@ -195,13 +198,30 @@ export default class AllProfile extends Vue {
       }),
     });
 
+    const colFileUpload = new CustomColumn({
+      prop: "avatar",
+      label: "File Upload",
+      template: new ColumnTemplate({
+        upload: new TemplateUpload({
+          buttonProps: new TemplateButton({
+            label: "File upload",
+          }),
+          action: "#",
+          autoUpload: false,
+          showFileList: false,
+          onChange: (file: any) => this.toggleUpload(file),
+          onRemove: (file: any) => this.toggleUpload(file),
+        }),
+      }),
+    });
+
     const colButton = new CustomColumn({
       prop: "detail",
       label: this.$t("all_profile.detail"),
       template: new ColumnTemplate({
         button: new TemplateButton({
           label: "Detail",
-          click: this.toDetailPage, //TODO dongnt
+          click: (id) => this.toDetailPage(id),
         }),
       }),
     });
@@ -215,6 +235,7 @@ export default class AllProfile extends Vue {
       colHobbies,
       colCheckbox,
       colDOB,
+      colFileUpload,
       colButton,
     ];
 
@@ -257,6 +278,10 @@ export default class AllProfile extends Vue {
 
   toDetailPage(id: string) {
     this.$router.push(`/profile-detail/update/` + id);
+  }
+
+  public toggleUpload(file: any) {
+    console.log(file);
   }
 }
 </script>

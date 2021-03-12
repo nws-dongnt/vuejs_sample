@@ -82,6 +82,8 @@ export default class TemplateSelect {
 
     options!: TemplateOption[];
 
+    collapseTags?: boolean;
+    
     constructor(init?: Partial<TemplateSelect>) {
         Object.assign(this, init);
     }
