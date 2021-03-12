@@ -2,7 +2,7 @@
   <div class="home">
     <AddminLayout>
       <div style="position: relative; display: flex;">
-        <marquee
+        <!-- <marquee
           style="position: absolute"
           behavior="scroll"
           direction="right"
@@ -14,7 +14,7 @@
             </span>
             <br />
           </div>
-        </marquee>
+        </marquee> -->
       </div>
     </AddminLayout>
   </div>

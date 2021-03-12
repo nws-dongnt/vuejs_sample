@@ -1,6 +1,7 @@
 <template>
   <el-menu
     style="border-right: none !important; height: 860px; border-right: 1px solid #eee;"
+    background-color="rgb(249 249 249)"
     router
   >
     <!-- <el-menu-item>

@@ -1,7 +1,7 @@
 <template>
   <!-- reponsive   :xs<768px   :sm≥768px    :md≥992px   :lg≥1200px   :xl≥1920px   -->
   <div class="home">
-    <AddminLayout>
+    <AdminLayout>
       <div
         class="_flex"
         style="height: 20px; font-size: 20px; font-weight: bold"
@@ -224,7 +224,7 @@
           </el-container>
         </el-form>
       </div>
-    </AddminLayout>
+    </AdminLayout>
   </div>
 </template>
 
@@ -254,7 +254,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import AddminLayout from "../layouts/AdminLayout.vue";
+import AdminLayout from "../layouts/AdminLayout.vue";
 import { Gender } from "../models/person/Person";
 import { Person } from "../models/person/Person";
 import { Hobbies } from "../models/hobbies/Hobbies";
@@ -280,7 +280,7 @@ class PersonModel {
 
 @Component({
   components: {
-    AddminLayout,
+    AdminLayout,
   },
 })
 export default class ProfileDetail extends Vue {
