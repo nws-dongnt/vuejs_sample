@@ -68,7 +68,7 @@ export const allProfile: Person[] = [
         avatar: 'https://i.ytimg.com/vi/6x3axmstyzQ/maxresdefault.jpg',
         firstName: "Digger C.",
         lastName: "Luffy 2",
-        gender: Gender.MALE,
+        gender: Gender.FEMALE,
         age: 25,
         dateOfBirth: "5/5/1989",
         everMarried: true,

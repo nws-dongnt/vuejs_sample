@@ -1,3 +1,4 @@
+// This is ver 2
 <template>
   <div>
     <AdminLayout>
@@ -8,7 +9,7 @@
       >
         {{ $t("all_profile.create_profile") }}
       </el-button>
-      <CustomTable :datasource="tableData" :columns="columns" />
+      <CustomTable2 :datasource="tableData" :columns="columns" />
     </AdminLayout>
   </div>
 </template>
@@ -26,34 +27,18 @@ import AdminLayout from "../layouts/AdminLayout.vue";
 import { allProfile, allHobbies } from "../fakedata";
 import { Gender } from "../models/person/Person";
 
-import CustomTable, {
+import CustomTable2, {
   CustomColumn,
-  ColumnTemplate,
-} from "../components/CustomTable/index.vue";
+} from "../components/CustomTable2/index.vue";
 
-import TemplateAvatar from "../components/CustomTable/control/avatar/avatar";
-
-import TemplateButton from "../components/CustomTable/control/button/button";
-
-import TemplateCheckbox, {
-  TemplateCheckBoxRadio,
-  TemplateCheckBoxGroup,
-} from "../components/CustomTable/control/checkbox/checkbox";
-
-import TemplateDatePicker from "../components/CustomTable/control/datepicker/datepicker";
-
-import TemplateInput from "../components/CustomTable/control/input/input";
-
-import TemplateInputNumber from "../components/CustomTable/control/inputnumber/inputnumber";
-
-import TemplateSelect from "../components/CustomTable/control/select/select";
-
-import TemplateRadio, {
-  TemplateRadioChild,
-  TemplateRadioGroup,
-} from "../components/CustomTable/control/radio/radio";
-
-import TemplateUpload from "../components/CustomTable/control/upload/upload";
+import fullNameComponent from "./AllProfile_ver2/CustomInput.vue";
+import ageComponent from "./AllProfile_ver2/CustomInputNumber.vue";
+import genderComponent from "./AllProfile_ver2/CustomRadio.vue";
+import checkboxComponent from "./AllProfile_ver2/CustomCheckbox.vue";
+import selectComponent from "./AllProfile_ver2/CustomSelect.vue";
+import datePickerComponent from "./AllProfile_ver2/CustomDatePicker.vue";
+import fileUploadComponent from "./AllProfile_ver2/CustomFileUpload.vue";
+import buttonComponent from "./AllProfile_ver2/CustomButton.vue";
 
 export class PersonInfoModel {
   id = "";
@@ -61,7 +46,7 @@ export class PersonInfoModel {
   avatar = "";
   dateOfBirth = "";
   fullName = "";
-  gender = "";
+  gender = 0;
   age = 0;
   everMarried = "";
   introduce = "";
@@ -75,7 +60,7 @@ export class PersonInfoModel {
 @Component({
   components: {
     AdminLayout,
-    CustomTable,
+    CustomTable2,
   },
 })
 export default class AllProfile extends Vue {
@@ -90,8 +75,11 @@ export default class AllProfile extends Vue {
   private tableData: PersonInfoModel[] = [];
 
   private mounted() {
-    //define columns
+    const avatarComponent = () => ({
+      component: import("./AllProfile_ver2/CustomAvatar.vue"),
+    });
 
+    //define columns
     const colIndex = new CustomColumn({
       prop: "index",
       label: this.$t("all_profile.index"),
@@ -105,138 +93,74 @@ export default class AllProfile extends Vue {
     const colAvatar = new CustomColumn({
       prop: "avatar",
       label: this.$t("all_profile.avatar"),
-      width: "70",
-      template: new ColumnTemplate({
-        avatar: new TemplateAvatar({
-          size: 40,
-        }),
-      }),
+      width: "80",
+      template: avatarComponent,
     });
 
-    const colName = new CustomColumn({
+    const colFullName = new CustomColumn({
       prop: "fullName",
       label: this.$t("all_profile.fullname"),
-      template: new ColumnTemplate({
-        input: new TemplateInput({
-          name: "fullName",
-        }),
-      }),
+      width: "200",
+      template: fullNameComponent,
     });
 
     const colAge = new CustomColumn({
       prop: "age",
       label: "Age",
-      template: new ColumnTemplate({
-        inputNumber: new TemplateInputNumber({
-          name: "age",
-        }),
-      }),
+      template: ageComponent,
     });
 
-    const hobbiesOptions = allHobbies.map((hob) => ({
-      value: hob.id,
-      label: hob.name,
-    }));
-
-    const colHobbies = new CustomColumn({
-      prop: "hobbies",
-      label: this.$t("all_profile.hobbies"),
-      template: new ColumnTemplate({
-        select: new TemplateSelect({
-          noDataText: "No data",
-          options: hobbiesOptions,
-          multiple: true,
-          filterable: true,
-          collapseTags: true,
-        }),
-      }),
-    });
-
-    const colRadio = new CustomColumn({
-      prop: "everMarried",
-      label: "everMarried",
-      template: new ColumnTemplate({
-        radio: new TemplateRadio({
-          group: new TemplateRadioGroup(),
-          radios: [
-            new TemplateRadioChild({
-              label: "YES",
-            }),
-            new TemplateRadioChild({
-              label: "NO",
-            }),
-          ],
-        }),
-      }),
+    const colGender = new CustomColumn({
+      prop: "gender",
+      label: "Gender",
+      width: "160",
+      template: genderComponent,
     });
 
     const colCheckbox = new CustomColumn({
       prop: "hobbies",
       label: "Checkbox",
-      template: new ColumnTemplate({
-        checkbox: new TemplateCheckbox({
-          group: new TemplateCheckBoxGroup(),
-          checkboxes: [
-            new TemplateCheckBoxRadio({
-              label: "Hihi",
-            }),
-            new TemplateCheckBoxRadio({
-              label: "Haha",
-            }),
-          ],
-        }),
-      }),
+      width: "160",
+      template: checkboxComponent,
+    });
+
+    const colHobbies = new CustomColumn({
+      prop: "hobbies",
+      label: "Hobbies",
+      template: selectComponent,
     });
 
     const colDOB = new CustomColumn({
       prop: "dateOfBirth",
-      label: "Date of Birth",
-      template: new ColumnTemplate({
-        datepicker: new TemplateDatePicker({
-          placeholder: "hihi xin qua",
-        }),
-      }),
+      label: "DOB",
+      template: datePickerComponent,
     });
 
-    const colFileUpload = new CustomColumn({
+    const colChangeAvatar = new CustomColumn({
       prop: "avatar",
       label: "File Upload",
-      template: new ColumnTemplate({
-        upload: new TemplateUpload({
-          buttonProps: new TemplateButton({
-            label: "File upload",
-          }),
-          action: "#",
-          autoUpload: false,
-          showFileList: false,
-          onChange: (file: any) => this.toggleUpload(file),
-          onRemove: (file: any) => this.toggleUpload(file),
-        }),
-      }),
+      width: "100",
+      template: fileUploadComponent,
     });
 
-    const colButton = new CustomColumn({
+    const colDetail = new CustomColumn({
       prop: "detail",
-      label: this.$t("all_profile.detail"),
-      template: new ColumnTemplate({
-        button: new TemplateButton({
-          label: "Detail",
-          click: (id) => this.toDetailPage(id),
-        }),
-      }),
+      label: "Detail",
+       width: "100",
+      template: buttonComponent,
     });
 
     this.columns = [
       colIndex,
       colAvatar,
-      colName,
+      colFullName,
       colAge,
-      colRadio,
-      colHobbies,
+      colGender,
       colCheckbox,
+      colHobbies,
       colDOB,
-      colFileUpload,
-      colButton,
+      colChangeAvatar,
+      colDetail,
     ];
 
     //create data-source
@@ -247,9 +171,7 @@ export default class AllProfile extends Vue {
         avatar: item.avatar,
         dateOfBirth: item.dateOfBirth,
         fullName: item.lastName + " " + item.firstName,
-        gender: item.gender
-          ? this.getGenderClassName(item.gender)
-          : this.getGenderClassName(Gender.MALE),
+        gender: item.gender ? item.gender : Gender.MALE,
         age: item.age,
         everMarried: item.everMarried
           ? String(this.$t("all_profile.yes"))
@@ -261,27 +183,8 @@ export default class AllProfile extends Vue {
     });
   }
 
-  private getGenderClassName(gender: Gender): string {
-    switch (gender) {
-      case Gender.MALE:
-        return "el-icon-male";
-      case Gender.FEMALE:
-        return "el-icon-female";
-      default:
-        return "el-icon-male";
-    }
-  }
-
   private toCreatePage() {
     this.$router.push("/profile-detail/create");
-  }
-
-  toDetailPage(id: string) {
-    this.$router.push(`/profile-detail/update/` + id);
-  }
-
-  public toggleUpload(file: any) {
-    console.log(file);
   }
 }
 </script>

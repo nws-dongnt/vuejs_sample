@@ -253,7 +253,7 @@
 </style>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import AdminLayout from "../layouts/AdminLayout.vue";
 import { Gender } from "../models/person/Person";
 import { Person } from "../models/person/Person";
@@ -434,15 +434,26 @@ export default class ProfileDetail extends Vue {
 
     this.fullName = this.person.firstName + " " + this.person.lastName;
 
-    //watch
-    this.$watch(
-      "person.firstName",
-      (newVal: string) => (this.fullName = newVal + " " + this.person.lastName)
-    );
-    this.$watch(
-      "person.lastName",
-      (newVal: string) => (this.fullName = this.person.firstName + " " + newVal)
-    );
+    //watch solution1
+    // this.$watch(
+    //   "person.firstName",
+    //   (newVal: string) => (this.fullName = newVal + " " + this.person.lastName)
+    // );
+    // this.$watch(
+    //   "person.lastName",
+    //   (newVal: string) => (this.fullName = this.person.firstName + " " + newVal)
+    // );
+  }
+
+  //watch solution2
+  @Watch("person.firstName")
+  private onFirstNameChange(newVal: string, oldVal: string) {
+    this.fullName = newVal + " " + this.person.lastName;
+  }
+
+  @Watch("person.lastName")
+  private onLastNameChange(newVal: string, oldVal: string) {
+    this.fullName = this.person.firstName + " " + newVal;
   }
 
   public toggleUpload(file: any) {
