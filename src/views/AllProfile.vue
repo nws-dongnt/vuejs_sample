@@ -82,7 +82,7 @@ export default class AllProfile extends Vue {
     //define columns
     const colIndex = new CustomColumn({
       prop: "index",
-      label: this.$t("all_profile.index"),
+      label: "all_profile.index",
       width: "50",
       labelClassName: "label-index",
       cellClassName: "cell-index",
@@ -92,14 +92,14 @@ export default class AllProfile extends Vue {
 
     const colAvatar = new CustomColumn({
       prop: "avatar",
-      label: this.$t("all_profile.avatar"),
+      label: "all_profile.avatar",
       width: "80",
       template: avatarComponent,
     });
 
     const colFullName = new CustomColumn({
       prop: "fullName",
-      label: this.$t("all_profile.fullname"),
+      label: "all_profile.fullname",
       width: "200",
       template: fullNameComponent,
     });
@@ -112,7 +112,7 @@ export default class AllProfile extends Vue {
 
     const colGender = new CustomColumn({
       prop: "gender",
-      label: "Gender",
+      label: "all_profile.gender",
       width: "160",
       template: genderComponent,
     });
@@ -126,13 +126,13 @@ export default class AllProfile extends Vue {
 
     const colHobbies = new CustomColumn({
       prop: "hobbies",
-      label: "Hobbies",
+      label: "all_profile.hobbies",
       template: selectComponent,
     });
 
     const colDOB = new CustomColumn({
       prop: "dateOfBirth",
-      label: "DOB",
+      label: "all_profile.dateOfBirth",
       template: datePickerComponent,
     });
 
@@ -145,7 +145,7 @@ export default class AllProfile extends Vue {
 
     const colDetail = new CustomColumn({
       prop: "detail",
-      label: "Detail",
+      label: "all_profile.detail",
        width: "100",
       template: buttonComponent,
     });

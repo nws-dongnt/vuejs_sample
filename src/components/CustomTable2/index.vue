@@ -4,7 +4,7 @@
       v-for="(col, index) in columns"
       :key="index"
       :prop="col.prop"
-      :label="col.label"
+      :label="$t(col.label)"
       :width="col.width"
       :labelClassName="col.labelClassName"
       :className="col.cellClassName"
